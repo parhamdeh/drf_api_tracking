@@ -30,7 +30,7 @@ class BaseLoggingMixin:
             'user':  user,
             'username_persistent' : user.get_username() if user else 'Anonymous',
             'response_ms': self._get_response_ms(),
-            'status_code': request.status_code,
+            'status_code': response.status_code,
         })
         
         self.handle_log()
@@ -79,6 +79,6 @@ class BaseLoggingMixin:
     
     def _get_response_ms(self):
         response_timedelta = now() - self.log['requested_at']
-        response_ms = int(response_timedelta * 1000)
+        response_ms = int(response_timedelta.total_seconds() * 1000)
         return max(response_ms, 0)
 
