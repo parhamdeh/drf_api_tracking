@@ -4,5 +4,5 @@ from .models import APIRquestLog
 
 class LoggingMixin(BaseLoggingMixin):
     def handle_log(self):
-        # APIRquestLog(**self.log()).save()
-        print(self.log)
+        APIRquestLog(**self.log()).save()
+        # print(self.log)
