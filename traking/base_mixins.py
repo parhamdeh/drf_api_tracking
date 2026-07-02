@@ -41,12 +41,12 @@ class BaseLoggingMixin:
             if response.streaming:
                 rendered_content = None
             elif hasattr(response, 'rendered_content'):
-                rendered_content = request.rendered_content
+                rendered_content = response.rendered_content
             else:
                 rendered_content = response.getvlaue()
 
             self.log.update({
-                'remote_addr': self._get_ip_address(request),
+                'remote_address': self._get_ip_address(request),
                 'view': self._get_view_name(request),
                 'view_method': self._get_view_method(request),
                 'path': self._get_path(request),
